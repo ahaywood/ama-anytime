@@ -1,10 +1,47 @@
+import { useState } from 'react'
+
+import { Link, routes } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
+
+import Avatar from '../Avatar/Avatar'
+import Icon from '../Icon/Icon'
+
 const MyAccountBar = () => {
-  return (
-    <div>
-      <h2>{'MyAccountBar'}</h2>
-      <p>{'Find me in ./web/src/components/MyAccountBar/MyAccountBar.tsx'}</p>
-    </div>
-  )
+  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const [isAccountMenuShowing, setIsAccountMenuShowing] = useState(false)
+  console.log({ currentUser })
+
+  if (isAuthenticated) {
+    const toggleAccountMenu = () => {
+      setIsAccountMenuShowing((prevValue) => !prevValue)
+    }
+
+    return (
+      <div className="flex items-center gap-x-4 bg-whiteSmoke px-8 py-3">
+        <Avatar name={currentUser.name} image={currentUser.avatar} />
+        <Link to={routes.profile()} className="block flex-1">
+          <div>
+            <strong>{currentUser.name}</strong>
+          </div>
+          <div>@{currentUser.username}</div>
+        </Link>
+        <div className="relative">
+          <button onClick={toggleAccountMenu}>
+            <Icon id="dots" />
+          </button>
+          {isAccountMenuShowing && (
+            <div className="absolute">
+              <button type="button" onClick={logOut}>
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+  return <div />
 }
 
 export default MyAccountBar

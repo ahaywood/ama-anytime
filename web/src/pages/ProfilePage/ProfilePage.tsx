@@ -1,19 +1,32 @@
-import { Link, routes } from '@redwoodjs/router'
+import { useEffect, useState } from 'react'
+
 import { MetaTags } from '@redwoodjs/web'
 
-const ProfilePage = () => {
+import { useAuth } from 'src/auth'
+import ProfileHeadingCell from 'src/components/ProfileHeading/ProfileHeadingCell'
+
+interface Props {
+  id?: string
+}
+
+const ProfilePage = ({ id = '' }: Props) => {
+  const [currentProfile, setCurrentProfile] = useState(id)
+  const { currentUser } = useAuth()
+
+  // if a profile is within the url, set it as the current logged in user
+  // TODO: Switch from the ID to the username
+  useEffect(() => {
+    if (!id) {
+      setCurrentProfile(currentUser?.id?.toString())
+    }
+    // TODO: if the user it not logged in and there's not profile within the URL -> might be able to handle within the router
+  }, [currentUser, id])
+
   return (
     <>
       <MetaTags title="Profile" description="Profile page" />
 
-      <h1>ProfilePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/ProfilePage/ProfilePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>profile</code>, link to me with `
-        <Link to={routes.profile()}>Profile</Link>`
-      </p>
+      <ProfileHeadingCell id={parseInt(currentProfile)} />
     </>
   )
 }

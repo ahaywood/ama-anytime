@@ -24,6 +24,14 @@
 }
 
 @layer components {
+  header nav ul li {
+    @apply text-4xl tracking-tight font-bold text-gray-800 mb-4
+  }
+
+  header nav ul li a:hover {
+    @apply text-hotMagenta
+  }
+
   footer nav ul li a {
     @apply hover:underline
   }
@@ -36,6 +44,30 @@
     @apply content-none mr-0
   }
 
+  .threaded {
+    @apply relative;
+  }
+
+  .threaded:before {
+    @apply content-[''] border-l-black border-l-2 absolute left-1/2 top-0 h-full z-threadLine
+  }
+
+  .threaded div,
+  .threaded img {
+    @apply z-avatar relative;
+  }
+
+  .action-buttons button {
+    @apply hover:text-hotMagenta flex gap-x-2 items-center font-bold
+  }
+
+  .action-buttons button.selected {
+    @apply text-hotMagenta
+  }
+
+  .profile-buttons button {
+    @apply rounded-full bg-whiteSmoke p-2 hover:bg-hotMagenta hover:text-white;
+  }
 }
 
 @layer utilities {

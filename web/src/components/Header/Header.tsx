@@ -1,14 +1,17 @@
 import { Link, NavLink, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
+
 import MyAccountBar from '../MyAccountBar/MyAccountBar'
 
 const Header = () => {
+  const { isAuthenticated } = useAuth()
   return (
-    <div className="flex flex-col justify-between h-full">
-      <h2>
+    <header className="flex h-full flex-col justify-between">
+      <h1 className="px-8">
         <Link to={routes.feed()}>Logo</Link>
-      </h2>
-      <nav className="flex-1">
+      </h1>
+      <nav className="flex-1 px-8">
         <ul>
           <li>
             <NavLink
@@ -19,37 +22,46 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className="link"
-              activeClassName="activeLink"
-              to={routes.notifications()}
-            >
-              Notifications
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="link"
-              activeClassName="activeLink"
-              to={routes.bookmarks()}
-            >
-              Bookmarks
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="link"
-              activeClassName="activeLink"
-              to={routes.profile()}
-            >
-              Profile
-            </NavLink>
-          </li>
+          {isAuthenticated && (
+            <>
+              <li>
+                <NavLink
+                  className="link"
+                  activeClassName="activeLink"
+                  to={routes.notifications()}
+                >
+                  Notifications
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="link"
+                  activeClassName="activeLink"
+                  to={routes.bookmarks()}
+                >
+                  Bookmarks
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="link"
+                  activeClassName="activeLink"
+                  to={routes.profile()}
+                >
+                  Profile
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
+        {isAuthenticated && (
+          <button className="center rounded-3xl bg-hotMagenta px-5 py-3 font-bold text-white hover:bg-black">
+            Ask a Question
+          </button>
+        )}
       </nav>
       <MyAccountBar />
-    </div>
+    </header>
   )
 }
 

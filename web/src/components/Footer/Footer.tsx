@@ -1,20 +1,26 @@
 import { Link, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
+
 const Footer = () => {
+  const { isAuthenticated } = useAuth()
+
   const getCurrentYear = () => {
     return new Date().getFullYear()
   }
 
   return (
-    <footer className="text-center">
+    <footer className="pt-10 text-center text-sm">
       <nav>
-        <ul className="flex gap-x-4 justify-center">
+        <ul className="mb-2 flex justify-center gap-x-4">
           <li>
             <Link to={routes.about()}>About</Link>
           </li>
-          <li>
-            <Link to={routes.invites()}>Invites</Link>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <Link to={routes.invites()}>Invites</Link>
+            </li>
+          )}
           <li>
             <Link to={routes.privacyPolicy()}>Privacy Policy</Link>
           </li>

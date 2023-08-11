@@ -1,19 +1,14 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+
+import PageHeading from 'src/components/PageHeading/PageHeading'
+import Question from 'src/components/Question/Question/Question'
 
 const FeedPage = () => {
   return (
     <>
       <MetaTags title="Feed" description="Feed page" />
 
-      <h1>FeedPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/FeedPage/FeedPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>feed</code>, link to me with `
-        <Link to={routes.feed()}>Feed</Link>`
-      </p>
+      <PageHeading heading="My Feed" />
     </>
   )
 }

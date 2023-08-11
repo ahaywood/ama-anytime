@@ -1,3 +1,6 @@
+import { Link, routes } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
 import Footer from 'src/components/Footer/Footer'
 import Header from 'src/components/Header/Header'
 import Recently from 'src/components/Recently/Recently'
@@ -9,8 +12,9 @@ type InteriorLayoutProps = {
 }
 
 const InteriorLayout = ({ children }: InteriorLayoutProps) => {
+  const { isAuthenticated } = useAuth()
   return (
-    <div className="grid grid-cols-12 gap-x-4">
+    <div className="grid grid-cols-12">
       <aside className="col-span-3 h-screen border-r-2 border-r-black pt-14">
         <Header />
       </aside>
@@ -18,10 +22,32 @@ const InteriorLayout = ({ children }: InteriorLayoutProps) => {
         {children}
         <Footer />
       </main>
-      <aside className="col-span-3 h-screen overflow-auto border-l-2 border-l-black px-4 pt-14">
+      <aside className="col-span-3 h-screen overflow-auto border-l-2 border-l-black px-4 pb-10 pt-4">
+        {!isAuthenticated && (
+          <div className="mb-4 flex gap-x-4">
+            <Link
+              to={routes.signup()}
+              className="center flex-1 rounded-3xl bg-black px-4 py-3 font-bold text-white hover:bg-hotMagenta"
+            >
+              Signup
+            </Link>
+            <Link
+              to={routes.login()}
+              className="center flex-1 rounded-3xl bg-black px-4 py-3 font-bold text-white hover:bg-hotMagenta"
+            >
+              Login
+            </Link>
+          </div>
+        )}
         <Search />
-        <YouMightLike />
-        <Recently />
+        {isAuthenticated ? (
+          <>
+            <YouMightLike />
+            <Recently />
+          </>
+        ) : (
+          <Recently />
+        )}
       </aside>
     </div>
   )

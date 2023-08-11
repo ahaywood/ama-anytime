@@ -22,4 +22,6 @@ export default meta
 
 type Story = StoryObj<typeof MyAccountBar>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {},
+}
