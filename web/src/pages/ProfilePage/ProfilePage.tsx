@@ -8,16 +8,17 @@ import ProfileTabs from 'src/components/ProfileTabs/ProfileTabs'
 
 interface Props {
   username: string
+  tab: 'answered' | 'unanswered' | 'asked'
 }
 
-const ProfilePage = ({ username }: Props) => {
+const ProfilePage = ({ username, tab }: Props) => {
   return (
     <>
       <MetaTags title="Profile" description="Profile page" />
 
       <ProfileHeadingCell username={username} />
 
-      <ProfileTabs />
+      <ProfileTabs defaultTab={tab} />
     </>
   )
 }

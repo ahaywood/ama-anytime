@@ -1,10 +1,25 @@
 import { useState } from 'react'
 
-const ProfileTabs = () => {
-  const [selectedTab, setSelectedTab] = useState('answered')
+import { navigate, routes, useParams } from '@redwoodjs/router'
 
-  const setCurrentTab = (tab: string) => {
+import AskedQuestionsCell from './AskedQuestionsCell'
+
+type defaultTabType = 'answered' | 'unanswered' | 'asked'
+
+interface ProfileTabsProps {
+  defaultTab: defaultTabType
+}
+
+const ProfileTabs = ({ defaultTab }: ProfileTabsProps) => {
+  const { username } = useParams()
+
+  const [selectedTab, setSelectedTab] = useState<defaultTabType>(
+    defaultTab || 'answered'
+  )
+
+  const setCurrentTab = (tab: defaultTabType) => {
     setSelectedTab(tab)
+    navigate(routes.profile({ username, tab }))
   }
 
   return (
@@ -44,7 +59,7 @@ const ProfileTabs = () => {
       <div>
         {selectedTab === 'answered' && <p>Answered Questions</p>}
         {selectedTab === 'unanswered' && <p>Unanswered Questions</p>}
-        {selectedTab === 'asked' && <p>Asked Questions</p>}
+        {selectedTab === 'asked' && <AskedQuestionsCell username={username} />}
       </div>
     </div>
   )
