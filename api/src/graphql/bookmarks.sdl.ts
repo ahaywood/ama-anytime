@@ -8,8 +8,9 @@ export const schema = gql`
   }
 
   type Query {
-    bookmarks: [Bookmark!]! @requireAuth
-    bookmark(id: Int!): Bookmark @requireAuth
+    bookmarks: [Bookmark!]! @skipAuth
+    bookmark(id: Int!): Bookmark @skipAuth
+    bookmarksByUser(userId: Int!): [Bookmark!]! @skipAuth
   }
 
   input CreateBookmarkInput {
@@ -23,9 +24,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createBookmark(input: CreateBookmarkInput!): Bookmark! @requireAuth
-    updateBookmark(id: Int!, input: UpdateBookmarkInput!): Bookmark!
-      @requireAuth
-    deleteBookmark(id: Int!): Bookmark! @requireAuth
+    createBookmark(input: CreateBookmarkInput!): Bookmark! @skipAuth
+    updateBookmark(id: Int!, input: UpdateBookmarkInput!): Bookmark! @skipAuth
+    deleteBookmark(id: Int!): Bookmark! @skipAuth
+    deleteQuestionUserBookmark(questionId: Int!, userId: Int!): Like! @skipAuth
   }
 `

@@ -28,7 +28,6 @@ const Routes = () => {
       <Set wrap={AccountLayout}>
         <Route path="/notification-settings" page={NotificationSettingsPage} name="notificationSettings" />
         <Route path="/privacy-safety" page={PrivacySafetyPage} name="privacySafety" />
-        <Route path="/my-profile" page={MyProfilePage} name="myProfile" />
         <Route path="/my-account" page={MyAccountPage} name="myAccount" />
         <Route path="/invites" page={InvitesPage} name="invites" />
       </Set>
@@ -41,8 +40,8 @@ const Routes = () => {
         <Route path="/following/{id:Int}" page={FollowingPage} name="following" />
         <Route path="/followers/{id:Int}" page={FollowersPage} name="followers" />
         <Route path="/feed" page={FeedPage} name="feed" />
-        <Route path="/profile/{id}" page={ProfilePage} name="profile" />
-        <Route path="/profile" page={ProfilePage} name="profile" />
+        <Route path="/my-profile" page={MyProfilePage} name="myProfile" />
+        <Route path="/profile/{username:String}" page={ProfilePage} name="profile" />
         <Route path="/" page={HomePage} name="home" />
         <Route path="/bookmarks" page={BookmarksPage} name="bookmarks" />
         <Route path="/notifications" page={NotificationsPage} name="notifications" />

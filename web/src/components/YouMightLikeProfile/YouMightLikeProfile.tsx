@@ -5,12 +5,12 @@ import Avatar from '../Avatar/Avatar'
 const YouMightLikeProfile = () => {
   return (
     <div className="flex gap-x-3">
-      <Link to={routes.profile()}>
+      <Link to={routes.profile({ username: 'selfteachme' })}>
         <Avatar name="Sara Walker" />
       </Link>
       <div className="text-sm">
         <Link
-          to={routes.profile()}
+          to={routes.profile({ username: 'selfteachme' })}
           className="mb-1 block hover:text-hotMagenta"
         >
           <strong>Savannah Nguyen</strong>

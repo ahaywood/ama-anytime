@@ -20,6 +20,7 @@ export const QUERY = gql`
       countFollowups
       countReuses
       currentUserLiked
+      currentUserBookmarked
       author {
         id
         username

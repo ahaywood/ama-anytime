@@ -25,15 +25,16 @@ const SignupPage = () => {
   }, [isAuthenticated])
 
   // focus on username box on page load
-  const usernameRef = useRef<HTMLInputElement>(null)
+  const firstFieldFocusRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    usernameRef.current?.focus()
+    firstFieldFocusRef.current?.focus()
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
     const response = await signUp({
       username: data.username,
       password: data.password,
+      name: data.name,
       email: data.email,
     })
 
@@ -63,6 +64,27 @@ const SignupPage = () => {
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
                   <Label
+                    name="name"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    Username
+                  </Label>
+                  <TextField
+                    name="name"
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    ref={firstFieldFocusRef}
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'Name is required',
+                      },
+                    }}
+                  />
+                  <FieldError name="name" className="rw-field-error" />
+
+                  <Label
                     name="username"
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
@@ -73,7 +95,6 @@ const SignupPage = () => {
                     name="username"
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
                     validation={{
                       required: {
                         value: true,
@@ -94,7 +115,7 @@ const SignupPage = () => {
                     name="email"
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
+                    ref={firstFieldFocusRef}
                     validation={{
                       required: {
                         value: true,

@@ -7,7 +7,7 @@ const RecentlyQuestion = () => {
     <div className="text-sm">
       <strong className="mb-1">How do you find podcast sponsors?</strong>
       <Link
-        to={routes.profile({ id: '1' })}
+        to={routes.profile({ username: 'selfteachme' })}
         className="flex items-center gap-x-2"
       >
         <Avatar name="Amy Dutton" size="small" />

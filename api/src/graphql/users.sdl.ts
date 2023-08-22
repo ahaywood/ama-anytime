@@ -17,16 +17,22 @@ export const schema = gql`
     lastLogin: DateTime
     clearNotifications: DateTime
     invitations: Int
+    countFollowers: Int
+    countFollowing: Int
+    commonFollowers: [Following]!
     questionsAuthored: [Question]!
     questionsDirectedAt: [Question]!
     Likes: [Like]!
     Bookmarks: [Bookmark]!
     Votes: [Vote]!
+    Following: [Following]!
+    Followers: [Following]!
   }
 
   type Query {
     users: [User!]! @skipAuth
     user(id: Int!): User @skipAuth
+    userByUsername(username: String!): User @skipAuth
   }
 
   input CreateUserInput {

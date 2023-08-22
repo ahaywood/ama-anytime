@@ -16,6 +16,14 @@ export const bookmark: QueryResolvers['bookmark'] = ({ id }) => {
   })
 }
 
+export const bookmarksByUser: QueryResolvers['bookmarksByUser'] = ({
+  userId,
+}) => {
+  return db.bookmark.findMany({
+    where: { userId },
+  })
+}
+
 export const createBookmark: MutationResolvers['createBookmark'] = ({
   input,
 }) => {
@@ -37,6 +45,12 @@ export const updateBookmark: MutationResolvers['updateBookmark'] = ({
 export const deleteBookmark: MutationResolvers['deleteBookmark'] = ({ id }) => {
   return db.bookmark.delete({
     where: { id },
+  })
+}
+
+export const deleteQuestionUserBookmark = ({ questionId, userId }) => {
+  return db.bookmark.delete({
+    where: { questionId_userId: { questionId, userId } },
   })
 }
 

@@ -1,19 +1,19 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import { useAuth } from 'src/auth'
+import PageHeading from 'src/components/PageHeading/PageHeading'
+import BookmarkFeedCell from 'src/components/Question/BookmarkFeedCell'
+
 const BookmarksPage = () => {
+  const { currentUser } = useAuth()
+
   return (
     <>
       <MetaTags title="Bookmarks" description="Bookmarks page" />
 
-      <h1>BookmarksPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/BookmarksPage/BookmarksPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>bookmarks</code>, link to me with `
-        <Link to={routes.bookmarks()}>Bookmarks</Link>`
-      </p>
+      <PageHeading heading="Bookmarks" />
+
+      <BookmarkFeedCell userId={currentUser?.id} />
     </>
   )
 }

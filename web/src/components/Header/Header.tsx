@@ -46,7 +46,7 @@ const Header = () => {
                 <NavLink
                   className="link"
                   activeClassName="activeLink"
-                  to={routes.profile()}
+                  to={routes.myProfile()}
                 >
                   Profile
                 </NavLink>

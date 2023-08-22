@@ -28,6 +28,7 @@
     @apply text-4xl tracking-tight font-bold text-gray-800 mb-4
   }
 
+  header nav ul li a.activeLink,
   header nav ul li a:hover {
     @apply text-hotMagenta
   }

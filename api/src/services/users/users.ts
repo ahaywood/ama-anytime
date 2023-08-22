@@ -16,6 +16,12 @@ export const user: QueryResolvers['user'] = ({ id }) => {
   })
 }
 
+export const userByUsername: QueryResolvers['user'] = ({ username }) => {
+  return db.user.findUnique({
+    where: { username },
+  })
+}
+
 export const createUser: MutationResolvers['createUser'] = ({ input }) => {
   return db.user.create({
     data: input,
@@ -50,5 +56,26 @@ export const User: UserRelationResolvers = {
   },
   Votes: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).Votes()
+  },
+  Followers: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).followers()
+  },
+  Following: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).following()
+  },
+  countFollowers: async (_obj, { root }) => {
+    const numFollowers = await db.user
+      .findUnique({ where: { id: root.id } })
+      .following()
+    return numFollowers.length
+  },
+  countFollowing: async (_obj, { root }) => {
+    const numFollowers = await db.user
+      .findUnique({ where: { id: root.id } })
+      .followers()
+    return numFollowers.length
+  },
+  commonFollowers: async (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).followers()
   },
 }
