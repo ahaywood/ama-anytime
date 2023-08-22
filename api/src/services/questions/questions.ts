@@ -10,6 +10,30 @@ export const questions: QueryResolvers['questions'] = () => {
   return db.question.findMany()
 }
 
+export const askedQuestionsByUser: QueryResolvers['questions'] = ({
+  username,
+}) => {
+  return db.question.findMany({
+    where: { author: { username } },
+  })
+}
+
+// export const answeredQuestionsByUser: QueryResolvers['questions'] = ({
+//   username,
+// }) => {
+//   return db.question.findMany({
+//     where: { directedAt: { username } },
+//   })
+// }
+
+// export const unansweredQuestionsByUser: QueryResolvers['questions'] = ({
+//   username,
+// }) => {
+//   return db.question.findMany({
+//     where: { directedAt: { username } },
+//   })
+// }
+
 export const question: QueryResolvers['question'] = ({ id }) => {
   return db.question.findUnique({
     where: { id },
