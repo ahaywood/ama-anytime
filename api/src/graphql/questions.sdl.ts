@@ -37,8 +37,8 @@ export const schema = gql`
       isAnswered: Boolean
     ): [Question!]! @skipAuth
     askedQuestionsByUser(username: String!): [Question!]! @skipAuth
-    # answeredQuestionsByUser(username: String!): [Question!]! @skipAuth
-    # unansweredQuestionsByUser(username: String!): [Question!]! @skipAuth
+    answeredQuestionsByUser(username: String!): [Question!]! @skipAuth
+    unansweredQuestionsByUser(username: String!): [Question!]! @skipAuth
   }
 
   input CreateQuestionInput {

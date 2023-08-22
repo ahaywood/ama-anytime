@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import { navigate, routes, useParams } from '@redwoodjs/router'
 
+import AnsweredQuestionsCell from './AnsweredQuestionsCell'
 import AskedQuestionsCell from './AskedQuestionsCell'
+import UnansweredQuestionsCell from './UnansweredQuestionsCell'
 
 type defaultTabType = 'answered' | 'unanswered' | 'asked'
 
@@ -57,8 +59,12 @@ const ProfileTabs = ({ defaultTab }: ProfileTabsProps) => {
         </button>
       </div>
       <div>
-        {selectedTab === 'answered' && <p>Answered Questions</p>}
-        {selectedTab === 'unanswered' && <p>Unanswered Questions</p>}
+        {selectedTab === 'answered' && (
+          <AnsweredQuestionsCell username={username} />
+        )}
+        {selectedTab === 'unanswered' && (
+          <UnansweredQuestionsCell username={username} />
+        )}
         {selectedTab === 'asked' && <AskedQuestionsCell username={username} />}
       </div>
     </div>

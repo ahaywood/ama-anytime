@@ -18,21 +18,21 @@ export const askedQuestionsByUser: QueryResolvers['questions'] = ({
   })
 }
 
-// export const answeredQuestionsByUser: QueryResolvers['questions'] = ({
-//   username,
-// }) => {
-//   return db.question.findMany({
-//     where: { directedAt: { username } },
-//   })
-// }
+export const answeredQuestionsByUser: QueryResolvers['questions'] = ({
+  username,
+}) => {
+  return db.question.findMany({
+    where: { directedAt: { username }, answer: { not: null } },
+  })
+}
 
-// export const unansweredQuestionsByUser: QueryResolvers['questions'] = ({
-//   username,
-// }) => {
-//   return db.question.findMany({
-//     where: { directedAt: { username } },
-//   })
-// }
+export const unansweredQuestionsByUser: QueryResolvers['questions'] = ({
+  username,
+}) => {
+  return db.question.findMany({
+    where: { directedAt: { username }, answer: null },
+  })
+}
 
 export const question: QueryResolvers['question'] = ({ id }) => {
   return db.question.findUnique({
