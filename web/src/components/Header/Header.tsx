@@ -2,14 +2,17 @@ import { Link, NavLink, routes } from '@redwoodjs/router'
 
 import { useAuth } from 'src/auth'
 
+import Logo from '../Logo/Logo'
 import MyAccountBar from '../MyAccountBar/MyAccountBar'
 
 const Header = () => {
   const { isAuthenticated } = useAuth()
   return (
     <header className="flex h-full flex-col justify-between">
-      <h1 className="px-8">
-        <Link to={routes.feed()}>Logo</Link>
+      <h1 className="mb-8 px-8">
+        <Link to={routes.feed()} className="text-hotMagenta hover:text-black">
+          <Logo />
+        </Link>
       </h1>
       <nav className="flex-1 px-8">
         <ul>
