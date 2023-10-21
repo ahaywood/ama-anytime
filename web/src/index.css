@@ -36,7 +36,7 @@
   }
 
   footer nav ul li a {
-    @apply hover:text-hotMagenta
+    @apply hover:text-hotMagenta whitespace-nowrap
   }
 
   footer nav ul li:before {
