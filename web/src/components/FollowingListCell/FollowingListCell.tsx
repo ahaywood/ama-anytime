@@ -2,12 +2,13 @@ import type {
   FindFollowingListQuery,
   FindFollowingListQueryVariables,
 } from 'types/graphql'
+
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`
-  query FindFollowingListQuery($id: Int!) {
-    followingList: followingList(id: $id) {
-      id
+  query Redwood {
+    redwood {
+      version
     }
   }
 `
@@ -28,5 +29,5 @@ export const Success = ({
   FindFollowingListQuery,
   FindFollowingListQueryVariables
 >) => {
-  return <div>{JSON.stringify(followingList)}</div>
+  return <div>Following List Cell</div>
 }

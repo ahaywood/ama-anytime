@@ -4,7 +4,7 @@ import { useAuth } from 'src/auth'
 import Footer from 'src/components/Footer/Footer'
 import Header from 'src/components/Header/Header'
 import Recently from 'src/components/Recently/Recently'
-import Search from 'src/components/Search/Search'
+import Search from 'src/components/Search/Search/Search'
 import YouMightLike from 'src/components/YouMightLike/YouMightLike'
 
 type InteriorLayoutProps = {
@@ -20,7 +20,9 @@ const InteriorLayout = ({ children }: InteriorLayoutProps) => {
       </aside>
       <main className="col-span-6 h-screen overflow-auto">
         {children}
-        <Footer />
+        <div className="px-14 pb-10">
+          <Footer />
+        </div>
       </main>
       <aside className="col-span-3 h-screen overflow-auto border-l-2 border-l-black px-4 pb-10 pt-4">
         {!isAuthenticated && (
@@ -40,13 +42,11 @@ const InteriorLayout = ({ children }: InteriorLayoutProps) => {
           </div>
         )}
         <Search />
-        {isAuthenticated ? (
+        {isAuthenticated && (
           <>
             <YouMightLike />
             <Recently />
           </>
-        ) : (
-          <Recently />
         )}
       </aside>
     </div>

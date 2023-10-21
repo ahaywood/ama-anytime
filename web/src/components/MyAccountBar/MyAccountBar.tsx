@@ -19,7 +19,10 @@ const MyAccountBar = () => {
     return (
       <div className="flex items-center gap-x-4 bg-whiteSmoke px-8 py-3">
         <Avatar name={currentUser.name} image={currentUser.avatar} />
-        <Link to={routes.myProfile()} className="block flex-1">
+        <Link
+          to={routes.myProfile()}
+          className="block flex-1 hover:text-hotMagenta"
+        >
           <div>
             <strong>{currentUser.name}</strong>
           </div>

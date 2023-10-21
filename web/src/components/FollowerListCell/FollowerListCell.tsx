@@ -5,21 +5,13 @@ import type {
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import FollowList from '../FollowList/FollowList'
+import FollowCard from '../FollowCard/FollowCard'
 import PageHeading from '../PageHeading/PageHeading'
 
 export const QUERY = gql`
-  query FindFollowerListQuery($id: Int!) {
-    user(id: $id) {
-      Followers {
-        follower {
-          username
-          name
-          avatar
-        }
-      }
-      name
-      countFollowers
+  query Redwood {
+    redwood {
+      version
     }
   }
 `
@@ -38,21 +30,22 @@ export const Success = ({
   user,
 }: CellSuccessProps<FindFollowerListQuery, FindFollowerListQueryVariables>) => {
   console.log({ user })
-  return (
-    <>
-      <PageHeading
-        heading={`${user.name}'s Followers (${user.countFollowers})`}
-      />
-      <ul>
-        {user?.Followers?.map((follower, index) => {
-          console.log({ follower })
-          return (
-            <li key={index}>
-              <FollowList user={follower} />
-            </li>
-          )
-        })}
-      </ul>
-    </>
-  )
+  // return (
+  // <>
+  //   <PageHeading
+  //     heading={`${user.name}'s Followers (${user.countFollowers})`}
+  //   />
+  //   <ul>
+  //     {user?.Followers?.map((follower, index) => {
+  //       console.log({ follower })
+  //       return (
+  //         <li key={index}>
+  //           <FollowCard user={follower} />
+  //         </li>
+  //       )
+  //     })}
+  //   </ul>
+  // </>
+  // )
+  return <div>Follower List Cell</div>
 }

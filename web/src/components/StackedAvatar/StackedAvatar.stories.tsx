@@ -12,6 +12,11 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
+import {
+  Primary as AvatarPrimary,
+  WithImage as AvatarWithImage,
+} from '../Avatar/Avatar.stories'
+
 import StackedAvatar from './StackedAvatar'
 
 const meta: Meta<typeof StackedAvatar> = {
@@ -22,4 +27,8 @@ export default meta
 
 type Story = StoryObj<typeof StackedAvatar>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    avatars: [{ ...AvatarPrimary.args }, { ...AvatarWithImage.args }],
+  },
+}

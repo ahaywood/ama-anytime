@@ -1,3 +1,5 @@
+import { Link, routes } from '@redwoodjs/router'
+
 import YouMightLikeProfile from '../YouMightLikeProfile/YouMightLikeProfile'
 
 const YouMightLike = () => {
@@ -15,9 +17,12 @@ const YouMightLike = () => {
           <YouMightLikeProfile />
         </li>
         <li>
-          <button className="text-sm font-bold underline hover:text-hotMagenta hover:no-underline">
+          <Link
+            to={routes.recommendations()}
+            className="text-sm font-bold underline hover:text-hotMagenta hover:no-underline"
+          >
             Show More
-          </button>
+          </Link>
         </li>
       </ul>
     </div>

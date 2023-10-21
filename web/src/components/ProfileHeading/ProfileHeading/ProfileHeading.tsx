@@ -1,9 +1,18 @@
 import { Link, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import Avatar from 'src/components/Avatar/Avatar'
 import Icon from 'src/components/Icon/Icon'
+import StackedAvatar from 'src/components/StackedAvatar/StackedAvatar'
+import { User } from 'src/types'
 
-const ProfileHeading = ({ user }) => {
+interface ProfileHeadingProps {
+  user: Partial<User>
+}
+
+const ProfileHeading = ({ user }: ProfileHeadingProps) => {
+  const { currentUser, isAuthenticated } = useAuth()
+
   return (
     <div className="w-full">
       <div className="relative">
@@ -20,18 +29,26 @@ const ProfileHeading = ({ user }) => {
       {/* content */}
       <div className="relative w-full pl-14 pr-5 pt-5">
         {/* profile buttons */}
-        {/* TODO: If we're on the logged in user's profile page, hide these buttons */}
         <div className="profile-buttons flex w-full justify-end gap-x-3 pb-10">
-          <button>
-            <Icon id="dots" />
-          </button>
-          <button>
-            <Icon id="comment" />
-          </button>
-          <button>
-            <Icon id="bell" />
-          </button>
-          <button className="h-10 rounded-3xl !px-4 font-bold">Follow</button>
+          {isAuthenticated && currentUser?.username !== user.username && (
+            <>
+              <button>
+                <Icon id="dots" />
+              </button>
+              <button>
+                <Icon id="comment" />
+              </button>
+              <button>
+                <Icon id="bell" />
+              </button>
+              <button className="button secondary !px-4">Follow</button>
+            </>
+          )}
+          {currentUser?.username === user.username && (
+            <Link to={routes.editProfile()} className="button secondary">
+              Edit Profile
+            </Link>
+          )}
         </div>
 
         {/* bio details */}
@@ -41,9 +58,9 @@ const ProfileHeading = ({ user }) => {
           </h1>
           <p className="mb-8">@{user.username}</p>
 
-          <p className="mb-8">{user.bio}</p>
+          <p className="mb-8 font-medium">{user.bio}</p>
 
-          <div className="mb-8 grid grid-cols-2 gap-x-10 gap-y-3">
+          <div className="mb-8 grid grid-cols-2 gap-x-10 gap-y-3 font-medium">
             {user.location ? (
               <div className="flex items-center gap-x-1">
                 <Icon id="location" />
@@ -70,18 +87,30 @@ const ProfileHeading = ({ user }) => {
               className="flex items-center gap-x-1 hover:text-hotMagenta"
             >
               <Icon id="user" />
-              <strong>{user.following ? user.following : '0'}</strong> Following
+              <strong>10</strong> Following
             </Link>
             <Link
               to={routes.followers({ id: 1 })}
               className="flex items-center gap-x-1 hover:text-hotMagenta"
             >
               <Icon id="user" />
-              <strong>{user.followers ? user.followers : '0'}</strong> Followers
+              <strong>10</strong> Followers
             </Link>
           </div>
 
-          <div className="mb-8">Followed by James Q Quick and 233 Others</div>
+          <Link
+            to={routes.followers({ id: user.id })}
+            className="mb-8 flex items-center gap-2 font-medium hover:text-hotMagenta"
+          >
+            <StackedAvatar
+              avatars={[
+                { image: 'https://picsum.photos/seed/1697859361132/42/42' },
+                { image: 'https://picsum.photos/seed/1697859361133/42/42' },
+                { image: 'https://picsum.photos/seed/1697859361134/42/42' },
+              ]}
+            />
+            Followed by James Q Quick and 233 Others
+          </Link>
         </div>
       </div>
     </div>

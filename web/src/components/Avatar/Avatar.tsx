@@ -1,8 +1,8 @@
-interface AvatarProps {
+export interface AvatarProps {
   className?: string
   image?: string
   name?: string
-  size?: 'large' | 'medium' | 'small'
+  size?: 'large' | 'medium' | '42' | 'small'
 }
 
 const Avatar = ({
@@ -11,7 +11,7 @@ const Avatar = ({
   name = '',
   size = 'medium',
 }: AvatarProps) => {
-  const initials = name.slice(0, 1).toUpperCase()
+  const initials = name ? name.slice(0, 1).toUpperCase() : ''
 
   const sizes = {
     large: {
@@ -21,6 +21,10 @@ const Avatar = ({
     medium: {
       size: '64px',
       text: '24px',
+    },
+    '42': {
+      size: '42px',
+      text: '18px',
     },
     small: {
       size: '32px',

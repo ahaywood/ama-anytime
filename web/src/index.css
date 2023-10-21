@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 /**
  * START --- SETUP TAILWINDCSS EDIT
  *
@@ -34,7 +36,7 @@
   }
 
   footer nav ul li a {
-    @apply hover:underline
+    @apply hover:text-hotMagenta
   }
 
   footer nav ul li:before {
@@ -66,13 +68,51 @@
     @apply text-hotMagenta
   }
 
+  .profile-buttons {
+    @apply h-[80px] block; /* 80px accounts for 40px height + 40px padding */
+  }
+
   .profile-buttons button {
     @apply rounded-full bg-whiteSmoke p-2 hover:bg-hotMagenta hover:text-white;
+  }
+
+  /* options menu */
+.options-menu:before {
+  content: '';
+  @apply absolute block border-[16px] z-10 border-l-transparent border-r-transparent
+}
+
+  .options-menu.topRight:before,
+  .options-menu.topLeft:before {
+    @apply border-b-whiteSmoke border-t-transparent -top-[32px]
+  }
+
+  .options-menu.bottomLeft:before,
+  .options-menu.topLeft:before {
+    @apply left-[24px]
+  }
+
+  .options-menu.bottomRight:before,
+  .options-menu.topRight:before {
+    @apply right-[24px]
+  }
+
+  .options-menu.bottomRight:before,
+  .options-menu.bottomLeft:before {
+    @apply border-t-whiteSmoke border-b-transparent -bottom-[32px]
   }
 }
 
 @layer utilities {
   .center {
     @apply flex items-center justify-center
+  }
+
+  .button {
+    @apply rounded-5 text-white bg-hotMagenta font-semibold py-1 px-4 hover:bg-black center
+  }
+
+  .button.secondary {
+    @apply bg-whiteSmoke text-black hover:bg-black hover:text-white
   }
 }

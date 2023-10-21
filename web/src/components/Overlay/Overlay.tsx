@@ -1,9 +1,6 @@
 const Overlay = () => {
   return (
-    <div>
-      <h2>{'Overlay'}</h2>
-      <p>{'Find me in ./web/src/components/Overlay/Overlay.tsx'}</p>
-    </div>
+    <div className="fixed inset-0 h-screen w-screen bg-white bg-opacity-70" />
   )
 }
 

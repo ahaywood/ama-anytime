@@ -10,7 +10,10 @@ const Header = () => {
   return (
     <header className="flex h-full flex-col justify-between">
       <h1 className="mb-8 px-8">
-        <Link to={routes.feed()} className="text-hotMagenta hover:text-black">
+        <Link
+          to={isAuthenticated ? routes.feed() : routes.home()}
+          className="text-hotMagenta hover:text-black"
+        >
           <Logo />
         </Link>
       </h1>
@@ -20,7 +23,7 @@ const Header = () => {
             <NavLink
               className="link"
               activeClassName="activeLink"
-              to={routes.feed()}
+              to={isAuthenticated ? routes.feed() : routes.home()}
             >
               Home
             </NavLink>

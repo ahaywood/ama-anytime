@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { navigate, routes, useParams } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
+
 import AnsweredQuestionsCell from './AnsweredQuestionsCell'
 import AskedQuestionsCell from './AskedQuestionsCell'
 import UnansweredQuestionsCell from './UnansweredQuestionsCell'
@@ -13,7 +15,21 @@ interface ProfileTabsProps {
 }
 
 const ProfileTabs = ({ defaultTab }: ProfileTabsProps) => {
-  const { username } = useParams()
+  const useUsername = () => {
+    const { username } = useParams()
+    const { currentUser } = useAuth()
+
+    // if the username exists as a parameter within the URL, use that
+    if (username) {
+      return username
+    }
+
+    // otherwise, use the current user's username
+    // this should be triggered on the /me route
+    return currentUser?.username
+  }
+
+  const username = useUsername()
 
   const [selectedTab, setSelectedTab] = useState<defaultTabType>(
     defaultTab || 'answered'

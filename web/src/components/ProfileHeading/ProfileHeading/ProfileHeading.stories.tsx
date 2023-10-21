@@ -22,4 +22,14 @@ export default meta
 
 type Story = StoryObj<typeof ProfileHeading>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    user: {
+      cover: 'https://source.unsplash.com/random/1600x400',
+      avatar: 'https://source.unsplash.com/random/300x300',
+      name: 'Jane Doe',
+      username: 'janedoe',
+      website: 'https://janedoe.com',
+    },
+  },
+}

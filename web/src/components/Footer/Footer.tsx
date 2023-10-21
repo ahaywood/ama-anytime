@@ -10,15 +10,19 @@ const Footer = () => {
   }
 
   return (
-    <footer className="pt-10 text-center text-sm">
+    <footer className="pt-10 text-sm">
       <nav>
-        <ul className="mb-2 flex justify-center gap-x-4">
+        <ul className="mb-2 flex justify-start gap-x-4">
           <li>
             <Link to={routes.about()}>About</Link>
           </li>
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <li>
               <Link to={routes.invites()}>Invites</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to={routes.waitingList()}>Waiting List</Link>
             </li>
           )}
           <li>
@@ -38,7 +42,7 @@ const Footer = () => {
           href="https://ahhacreative.com"
           target="_blank"
           rel="noreferrer"
-          className="hover:underline"
+          className=" hover:font-underline hover:text-hotMagenta"
         >
           Ah Ha Creative, LLC.
         </a>{' '}

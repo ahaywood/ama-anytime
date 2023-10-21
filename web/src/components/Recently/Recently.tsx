@@ -1,3 +1,5 @@
+import { Link, routes } from '@redwoodjs/router'
+
 import RecentlyQuestion from '../RecentlyQuestion/RecentlyQuestion'
 
 const Recently = () => {
@@ -15,9 +17,12 @@ const Recently = () => {
           <RecentlyQuestion />
         </li>
         <li>
-          <button className="text-sm font-bold underline hover:text-hotMagenta hover:no-underline">
+          <Link
+            to={routes.home()}
+            className="text-sm font-bold underline hover:text-hotMagenta hover:no-underline"
+          >
             Show More
-          </button>
+          </Link>
         </li>
       </ul>
     </div>
