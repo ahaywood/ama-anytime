@@ -4,11 +4,12 @@ import { useAuth } from 'src/auth'
 
 import Logo from '../Logo/Logo'
 import MyAccountBar from '../MyAccountBar/MyAccountBar'
+import NotificationBadge from '../NotificationBadge/NotificationBadge'
 
 const Header = () => {
   const { isAuthenticated } = useAuth()
   return (
-    <header className="flex h-full flex-col justify-between">
+    <header className="flex h-screen flex-col justify-between overflow-y-scroll pt-14">
       <h1 className="mb-8 px-8">
         <Link
           to={isAuthenticated ? routes.feed() : routes.home()}
@@ -17,7 +18,7 @@ const Header = () => {
           <Logo />
         </Link>
       </h1>
-      <nav className="flex-1 px-8">
+      <nav className="flex-1 px-8 pb-8">
         <ul>
           <li>
             <NavLink
@@ -32,11 +33,12 @@ const Header = () => {
             <>
               <li>
                 <NavLink
-                  className="link"
+                  className="link flex items-center gap-2 whitespace-nowrap"
                   activeClassName="activeLink"
                   to={routes.notifications()}
                 >
                   Notifications
+                  <NotificationBadge numberOfNotifications={3} />
                 </NavLink>
               </li>
               <li>
@@ -46,6 +48,15 @@ const Header = () => {
                   to={routes.bookmarks()}
                 >
                   Bookmarks
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="link"
+                  activeClassName="activeLink"
+                  to={routes.lists()}
+                >
+                  Lists
                 </NavLink>
               </li>
               <li>
