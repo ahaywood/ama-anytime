@@ -91,7 +91,10 @@ const MyAccountBar = () => {
                     {
                       label: 'Logout',
                       icon: 'logout',
-                      onClick: logOut,
+                      onClick: () => {
+                        navigate(routes.home())
+                        logOut()
+                      },
                     },
                   ]}
                   direction="bottomRight"
