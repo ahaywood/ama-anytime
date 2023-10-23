@@ -4,7 +4,7 @@ import { useAuth } from 'src/auth'
 import Footer from 'src/components/Footer/Footer'
 import Header from 'src/components/Header/Header'
 import Recently from 'src/components/Recently/Recently'
-import Search from 'src/components/Search/Search/Search'
+import Search from 'src/components/Search/Search'
 import YouMightLike from 'src/components/YouMightLike/YouMightLike'
 
 type InteriorLayoutProps = {
@@ -15,7 +15,7 @@ const InteriorLayout = ({ children }: InteriorLayoutProps) => {
   const { isAuthenticated } = useAuth()
   return (
     <div className="grid grid-cols-12">
-      <aside className="col-span-3 h-screen border-r-2 border-r-black pt-14">
+      <aside className="col-span-3 h-screen border-r-2 border-r-black">
         <Header />
       </aside>
       <main className="col-span-6 h-screen overflow-auto">
