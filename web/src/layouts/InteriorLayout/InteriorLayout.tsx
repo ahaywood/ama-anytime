@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
 import Footer from 'src/components/Footer/Footer'
@@ -15,6 +16,7 @@ const InteriorLayout = ({ children }: InteriorLayoutProps) => {
   const { isAuthenticated } = useAuth()
   return (
     <div className="grid grid-cols-12">
+      <Toaster />
       <aside className="col-span-3 h-screen border-r-2 border-r-black">
         <Header />
       </aside>

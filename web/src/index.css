@@ -60,11 +60,11 @@
     @apply z-avatar relative;
   }
 
-  .action-buttons button {
+  .action-buttons > button {
     @apply hover:text-hotMagenta flex gap-x-2 items-center font-bold
   }
 
-  .action-buttons button.selected {
+  .action-buttons > button.selected {
     @apply text-hotMagenta
   }
 
@@ -72,8 +72,9 @@
     @apply h-[80px] block; /* 80px accounts for 40px height + 40px padding */
   }
 
-  .profile-buttons button {
-    @apply rounded-full bg-whiteSmoke p-2 hover:bg-hotMagenta hover:text-white;
+  .profile-buttons .button,
+  .profile-buttons > button {
+    @apply rounded-full bg-whiteSmoke p-2 hover:bg-hotMagenta hover:text-white text-black;
   }
 
   /* options menu */

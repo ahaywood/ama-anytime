@@ -2,19 +2,21 @@ import type { IconName } from '@web/public/icons/name.d.ts'
 
 import Icon from '../Icon/Icon'
 
+export type MenuOption = {
+  label: string
+  icon: IconName
+  onClick: () => void
+}
+
 interface OptionsMenuProps {
   direction: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
-  options: {
-    label: string
-    icon: IconName
-    onClick: () => void
-  }[]
+  options: MenuOption[]
 }
 
 const OptionsMenu = ({ direction, options }: OptionsMenuProps) => {
   return (
     <div
-      className={`options-menu relative rounded-5 bg-whiteSmoke px-5 py-4 ${
+      className={`options-menu relative rounded-5 bg-whiteSmoke px-5 py-4  ${
         direction ? direction : ''
       }`}
     >

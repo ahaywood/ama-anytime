@@ -1,9 +1,18 @@
+import { useRef, useState } from 'react'
+
+import { AnimatePresence, motion } from 'framer-motion'
+
 import { Link, routes } from '@redwoodjs/router'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
 import Avatar from 'src/components/Avatar/Avatar'
 import Icon from 'src/components/Icon/Icon'
+import OptionsMenu, { MenuOption } from 'src/components/OptionsMenu/OptionsMenu'
 import StackedAvatar from 'src/components/StackedAvatar/StackedAvatar'
+import { useOutsideClick } from 'src/hooks/useClickOutside'
+import { useCopyToClipboard } from 'src/hooks/useCopyToClipboard'
+import { useEscapeKey } from 'src/hooks/useEscapeKey'
 import { User } from 'src/types'
 
 interface ProfileHeadingProps {
@@ -12,6 +21,44 @@ interface ProfileHeadingProps {
 
 const ProfileHeading = ({ user }: ProfileHeadingProps) => {
   const { currentUser, isAuthenticated } = useAuth()
+  const [isProfileDropdownShowing, setIsProfileDropdownShowing] =
+    useState(false)
+  const profileDropdownRef = useRef(null)
+  const { copy } = useCopyToClipboard()
+
+  const toggleProfileDropdownShowing = () => {
+    setIsProfileDropdownShowing((prevValue) => !prevValue)
+  }
+
+  useOutsideClick(toggleProfileDropdownShowing, profileDropdownRef)
+  useEscapeKey(() => setIsProfileDropdownShowing(false))
+
+  const profileDropdownOptions = [
+    {
+      icon: 'link',
+      label: 'Copy Link to Profile',
+      onClick: () => {
+        copy(window.location.href)
+        toast.success('Copied to clipboard')
+        setIsProfileDropdownShowing(false)
+      },
+    },
+    {
+      icon: 'mute',
+      label: `Mute ${user.name}`,
+      onClick: () => console.log('mute person'),
+    },
+    {
+      icon: 'block',
+      label: `Block ${user.name}`,
+      onClick: () => console.log('block person'),
+    },
+    {
+      icon: 'flag',
+      label: `Report ${user.name}`,
+      onClick: () => console.log('report person'),
+    },
+  ] as MenuOption[]
 
   return (
     <div className="w-full">
@@ -32,9 +79,31 @@ const ProfileHeading = ({ user }: ProfileHeadingProps) => {
         <div className="profile-buttons flex w-full justify-end gap-x-3 pb-10">
           {isAuthenticated && currentUser?.username !== user.username && (
             <>
-              <button>
-                <Icon id="dots" />
-              </button>
+              <div className="relative" ref={profileDropdownRef}>
+                <button
+                  onClick={toggleProfileDropdownShowing}
+                  className={`button ${
+                    isProfileDropdownShowing ? '!bg-hotMagenta !text-white' : ''
+                  }`}
+                >
+                  <Icon id="dots" />
+                </button>
+                <AnimatePresence>
+                  {isProfileDropdownShowing && (
+                    <motion.div
+                      className="absolute -right-5 top-16"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                    >
+                      <OptionsMenu
+                        direction={'topRight'}
+                        options={profileDropdownOptions}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <button>
                 <Icon id="comment" />
               </button>
