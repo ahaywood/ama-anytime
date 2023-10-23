@@ -37,10 +37,10 @@ const Routes = () => {
 
       {/* account layout */}
       <Set wrap={AccountLayout}>
-        <Route path="/notification-settings" page={NotificationSettingsPage} name="notificationSettings" />
-        <Route path="/privacy-safety" page={PrivacySafetyPage} name="privacySafety" />
         <Route path="/my-account" page={MyAccountPage} name="myAccount" />
         <Route path="/invites" page={InvitesPage} name="invites" />
+        <Route path="/privacy-safety" page={PrivacySafetyPage} name="privacySafety" />
+        <Route path="/notification-settings" page={NotificationSettingsPage} name="notificationSettings" />
       </Set>
 
       {/* legal pages */}
@@ -56,6 +56,7 @@ const Routes = () => {
         <Route path="/followers/{id:Int}" page={FollowersPage} name="followers" />
         <Route path="/feed" page={FeedPage} name="feed" /> {/* feed from people I follow */}
         <Route path="/recommendations" page={RecommendationsPage} name="recommendations" /> {/* recommended people */}
+        <Route path="/lists" page={ListsPage} name="lists" />
         <Route path="/profile/{username:String}" page={ProfilePage} name="profile" />
         <Route path="/me" page={MyProfilePage} name="myProfile" />
         <Route path="/me/edit" page={EditProfilePage} name="editProfile" />
