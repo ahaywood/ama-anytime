@@ -3,7 +3,7 @@ import { Link } from '@redwoodjs/router'
 import Icon from '../Icon/Icon'
 
 interface PageHeadingProps {
-  backButtonLink: string
+  backButtonLink?: string
   heading: string
 }
 
