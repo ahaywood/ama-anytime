@@ -2,11 +2,13 @@ import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { useAuth } from 'src/auth'
 import Icon from 'src/components/Icon/Icon'
 import SearchCell from 'src/components/Search/SearchCell'
 
 const Search = () => {
   const [isSearchDetailsShowing, setIsSearchDetailsShowing] = useState(false)
+  const { isAuthenticated } = useAuth()
   return (
     <div className="relative mb-4 flex gap-x-2 rounded-3xl bg-whiteSmoke px-4 py-3">
       <Icon id="search" />
@@ -18,7 +20,8 @@ const Search = () => {
         onBlur={() => setIsSearchDetailsShowing(false)}
       />
       <AnimatePresence>
-        {isSearchDetailsShowing && (
+        {/* if the user is not logged in, can't show saved searches */}
+        {isSearchDetailsShowing && isAuthenticated && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
