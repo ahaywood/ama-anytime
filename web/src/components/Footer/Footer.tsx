@@ -39,14 +39,14 @@ const Footer = () => {
       <div>
         Copyright &copy;{getCurrentYear()}.{' '}
         <a
-          href="https://ahhacreative.com"
+          href="https://redwoodjs.com"
           target="_blank"
           rel="noreferrer"
-          className=" hover:font-underline hover:text-hotMagenta"
+          className="hover:text-hotMagenta"
         >
-          Ah Ha Creative, LLC.
-        </a>{' '}
-        All Rights Reserved.
+          RedwoodJS
+        </a>
+        . All Rights Reserved.
       </div>
     </footer>
   )
