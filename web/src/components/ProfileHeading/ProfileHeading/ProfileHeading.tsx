@@ -30,7 +30,7 @@ const ProfileHeading = ({ user }: ProfileHeadingProps) => {
     setIsProfileDropdownShowing((prevValue) => !prevValue)
   }
 
-  useOutsideClick(toggleProfileDropdownShowing, profileDropdownRef)
+  useOutsideClick(() => setIsProfileDropdownShowing(false), profileDropdownRef)
   useEscapeKey(() => setIsProfileDropdownShowing(false))
 
   const profileDropdownOptions = [
