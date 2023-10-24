@@ -5,6 +5,8 @@ import type {
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
+import QuestionLoading from 'src/components/QuestionLoading/QuestionLoading'
+
 import Question from '../Question'
 
 export const QUERY = gql`
@@ -38,7 +40,19 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <>
+    <div className="border-b-2 border-b-gray-200 px-14 py-12">
+      <QuestionLoading />
+    </div>
+    <div className="border-b-2 border-b-gray-200 px-14 py-12">
+      <QuestionLoading />
+    </div>
+    <div className="border-b-2 border-b-gray-200 px-14 py-12">
+      <QuestionLoading />
+    </div>
+  </>
+)
 
 export const Empty = () => <div>Empty</div>
 
