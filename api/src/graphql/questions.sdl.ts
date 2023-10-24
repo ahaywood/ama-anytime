@@ -5,6 +5,7 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime
     answer: String
+    answeredAt: DateTime
     author: User!
     authorId: Int
     currentUserBookmarked: Boolean
@@ -44,6 +45,7 @@ export const schema = gql`
   input CreateQuestionInput {
     question: String!
     answer: String
+    answeredAt: DateTime
     authorId: Int!
     directedAtId: Int!
     archive: Boolean!
@@ -54,6 +56,7 @@ export const schema = gql`
   input UpdateQuestionInput {
     question: String
     answer: String
+    answeredAt: DateTime
     authorId: Int
     directedAtId: Int
     archive: Boolean

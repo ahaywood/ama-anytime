@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import type { DeleteQuestionMutationVariables } from 'types/graphql'
 
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 import Avatar from 'src/components/Avatar/Avatar'
 import Icon from 'src/components/Icon/Icon'
+import OptionsMenu, { MenuOption } from 'src/components/OptionsMenu/OptionsMenu'
+import { relativeDateTime } from 'src/helpers/TimeHelpers'
+import { useOutsideClick } from 'src/hooks/useClickOutside'
 
 import ActionButtons from './component/ActionButtons/ActionButtons'
 
@@ -22,12 +26,14 @@ const DELETE_QUESTION_MUTATION = gql`
 
 const Question = ({ question }) => {
   const [isMoreMenuShowing, setIsMoreMenuShowing] = useState(false)
-  const { currentUser } = useAuth()
+  const { currentUser, isAuthenticated } = useAuth()
+
+  const moreMenuRef = useRef(null)
+  useOutsideClick(() => setIsMoreMenuShowing(false), moreMenuRef)
 
   const [deleteQuestion] = useMutation(DELETE_QUESTION_MUTATION, {
     onCompleted: () => {
       toast.success('Question deleted')
-      navigate(routes.questions())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -41,46 +47,82 @@ const Question = ({ question }) => {
   }
 
   const toggleMoreMenu = () => {
+    console.log('toggle')
     setIsMoreMenuShowing((prevValue) => !prevValue)
+  }
+
+  const getQuestionMenuOptions = () => {
+    const options = [] as MenuOption[]
+
+    // if the current user is the author of the question, they can edit and delete it
+    if (currentUser?.id === question.author.id) {
+      options.push({
+        label: 'Edit the Question',
+        icon: 'pencil',
+        onClick: () => console.log('edit question'),
+      })
+      options.push({
+        label: 'Delete the Question',
+        icon: 'trash',
+        onClick: () => onDeleteClick(question.id),
+      })
+    } // Otherwise...
+    else {
+      // the user can follow, mute, or block the author and report the question
+      options.push(
+        {
+          label: `Follow ${question.author.name}`,
+          icon: 'follow',
+          onClick: () => console.log('follow Lily Smith'),
+        },
+        {
+          label: `Mute ${question.author.name}`,
+          icon: 'mute',
+          onClick: () => console.log('mute Lily Smith'),
+        },
+        {
+          label: `Block ${question.author.name}`,
+          icon: 'block',
+          onClick: () => console.log('block Lily Smith'),
+        },
+        {
+          label: 'Report the Question',
+          icon: 'flag',
+          onClick: () => console.log('Flag Question'),
+        }
+      )
+    }
+
+    return options
   }
 
   return (
     <>
       <div className="relative grid grid-cols-[64px_1fr] gap-x-5">
         {/* more menu */}
-        <div className="absolute right-0 top-0">
-          <button onClick={toggleMoreMenu}>
-            <Icon id="dots" />
-          </button>
-          {isMoreMenuShowing && (
-            <div className="absolute">
-              <nav>
-                {/* as soon as the question is answered, the question is locked */}
-                <ul>
-                  {!question.answer && (
-                    <li>
-                      <Link
-                        to={routes.editQuestion({ id: question.id })}
-                        className="rw-button rw-button-blue"
-                      >
-                        Edit
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <button
-                      type="button"
-                      className="rw-button rw-button-red"
-                      onClick={() => onDeleteClick(question.id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          )}
-        </div>
+        {isAuthenticated && (
+          <div className="absolute right-0 top-0" ref={moreMenuRef}>
+            <button onClick={toggleMoreMenu} className="relative z-30">
+              <Icon id="dots" />
+            </button>
+            <AnimatePresence>
+              {isMoreMenuShowing && (
+                <motion.div
+                  className="absolute -right-7 top-10 z-20"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                >
+                  <OptionsMenu
+                    close={() => setIsMoreMenuShowing(false)}
+                    direction={'topRight'}
+                    options={getQuestionMenuOptions()}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
         <div className="threaded">
           <Link to={routes.profile({ username: question.author.username })}>
             <Avatar
@@ -104,7 +146,7 @@ const Question = ({ question }) => {
             >
               @{question.author.username}
             </Link>{' '}
-            &bull; 2hr
+            &bull; {relativeDateTime(question.createdAt)}
           </div>
           <div className="mb-3 text-xl font-bold">{question.question}</div>
         </div>
@@ -135,7 +177,7 @@ const Question = ({ question }) => {
               >
                 @{question.directedAt.username}
               </Link>{' '}
-              &bull; 30min
+              &bull; {relativeDateTime(question.answeredAt)}
             </div>
             {question.answer}
           </div>

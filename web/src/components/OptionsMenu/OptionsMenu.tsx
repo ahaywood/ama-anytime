@@ -1,5 +1,7 @@
 import type { IconName } from '@web/public/icons/name.d.ts'
 
+import { useEscapeKey } from 'src/hooks/useEscapeKey'
+
 import Icon from '../Icon/Icon'
 
 export type MenuOption = {
@@ -9,11 +11,13 @@ export type MenuOption = {
 }
 
 interface OptionsMenuProps {
+  close: () => void
   direction: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
   options: MenuOption[]
 }
 
-const OptionsMenu = ({ direction, options }: OptionsMenuProps) => {
+const OptionsMenu = ({ close, direction, options }: OptionsMenuProps) => {
+  useEscapeKey(close)
   return (
     <div
       className={`options-menu relative rounded-5 bg-whiteSmoke px-5 py-4  ${
