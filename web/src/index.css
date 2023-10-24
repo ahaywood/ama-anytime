@@ -56,10 +56,16 @@
     @apply mb-2 font-bold text-xl block
   }
 
+  .big-form textarea,
   .big-form input[type='text'],
   .big-form input[type='email'],
+  .big-form input[type='url'],
   .big-form input[type='password'] {
     @apply text-xl font-bold h-[72px] w-full px-8 border-4 border-whiteSmoke
+  }
+
+  .big-form textarea {
+    @apply py-5
   }
 
   .big-form .button {

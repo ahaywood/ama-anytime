@@ -114,7 +114,7 @@ const ProfileHeading = ({ user }: ProfileHeadingProps) => {
             </>
           )}
           {currentUser?.username === user.username && (
-            <Link to={routes.editProfile()} className="button secondary">
+            <Link to={routes.editProfile()} className="button secondary !px-6">
               Edit Profile
             </Link>
           )}
