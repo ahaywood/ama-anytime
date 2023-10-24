@@ -1,20 +1,17 @@
-import { Link, routes } from '@redwoodjs/router'
+import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+
+import NotificationsCell from 'src/components/NotificationsCell'
+import PageHeading from 'src/components/PageHeading/PageHeading'
 
 const NotificationsPage = () => {
   return (
     <>
       <MetaTags title="Notifications" description="Notifications page" />
 
-      <h1>NotificationsPage</h1>
-      <p>
-        Find me in{' '}
-        <code>./web/src/pages/NotificationsPage/NotificationsPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>notifications</code>, link to me with `
-        <Link to={routes.notifications()}>Notifications</Link>`
-      </p>
+      <PageHeading heading="Notifications" backButtonLink={routes.feed()} />
+
+      <NotificationsCell />
     </>
   )
 }

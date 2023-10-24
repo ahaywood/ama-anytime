@@ -11,29 +11,35 @@ import { Router, Route, Set } from '@redwoodjs/router'
 
 import { useAuth } from './auth'
 import AccountLayout from './layouts/AccountLayout/AccountLayout'
+import HalfAndHalfLayout from './layouts/HalfAndHalfLayout/HalfAndHalfLayout'
+import HalfAndHalfWithTitleLayout from './layouts/HalfAndHalfWithTitleLayout/HalfAndHalfWithTitleLayout'
 import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
-import LegalLayout from './layouts/LegalLayout/LegalLayout'
 
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      {/* title on the side (same as login) */}
-      <Set>
-        <Route path="/waiting-list" page={WaitingListPage} name="waitingList" />
-        <Route path="/contact" page={ContactPage} name="contact" />
+      <Set wrap={HalfAndHalfLayout}>
+        {/* legal pages */}
+        <Route path="/terms-conditions" page={TermsConditionsPage} name="termsConditions" prerender />
+        <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" prerender />
+        <Route path="/privacy-policy" page={PrivacyPolicyPage} name="privacyPolicy" prerender />
+
+        {/* title at the top of the page (same as legal pages) */}
+        <Route path="/about" page={AboutPage} name="about" prerender />
+        <Route path="/brand-kit" page={BrandKitPage} name="brandKit" prerender />
       </Set>
 
       {/* auth */}
-      <Set>
+      <Set wrap={HalfAndHalfWithTitleLayout}>
         <Route path="/login" page={LoginPage} name="login" />
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
         <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-      </Set>
 
-      {/* title at the top of the page (same as legal pages) */}
-      <Route path="/about" page={AboutPage} name="about" prerender />
-      <Route path="/brand-kit" page={BrandKitPage} name="brandKit" prerender />
+        {/* title on the side (same as login) */}
+        <Route path="/waiting-list" page={WaitingListPage} name="waitingList" />
+        <Route path="/contact" page={ContactPage} name="contact" />
+      </Set>
 
       {/* account layout */}
       <Set wrap={AccountLayout}>
@@ -41,13 +47,6 @@ const Routes = () => {
         <Route path="/invites" page={InvitesPage} name="invites" />
         <Route path="/privacy-safety" page={PrivacySafetyPage} name="privacySafety" />
         <Route path="/notification-settings" page={NotificationSettingsPage} name="notificationSettings" />
-      </Set>
-
-      {/* legal pages */}
-      <Set wrap={LegalLayout}>
-        <Route path="/terms-conditions" page={TermsConditionsPage} name="termsConditions" prerender />
-        <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" prerender />
-        <Route path="/privacy-policy" page={PrivacyPolicyPage} name="privacyPolicy" prerender />
       </Set>
 
       <Set wrap={InteriorLayout}>

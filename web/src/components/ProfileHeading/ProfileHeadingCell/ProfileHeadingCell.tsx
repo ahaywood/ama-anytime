@@ -15,11 +15,11 @@ export const QUERY = gql`
       name
       username
       website
-      Followers {
-        following {
-          username
-        }
-      }
+      # Followers {
+      #   following {
+      #     username
+      #   }
+      # }
     }
   }
 `

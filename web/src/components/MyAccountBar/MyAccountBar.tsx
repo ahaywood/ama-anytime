@@ -29,7 +29,7 @@ const MyAccountBar = () => {
 
   useEscapeKey(closeAccountOptions)
 
-  if (isAuthenticated) {
+  if (isAuthenticated && currentUser) {
     return (
       <div className="flex items-center gap-x-4 bg-whiteSmoke px-8 py-3">
         <Avatar name={currentUser.name} image={currentUser.avatar} />

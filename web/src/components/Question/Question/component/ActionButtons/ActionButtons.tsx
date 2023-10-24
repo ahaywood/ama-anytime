@@ -133,10 +133,13 @@ const ActionButtons = ({ question }) => {
       <button>
         <Icon id="comment" /> {question.countFollowups}
       </button>
-      <button onClick={toggleLike} className={isLiked && 'selected'}>
+      <button onClick={toggleLike} className={isLiked ? 'selected' : ''}>
         <Icon id={isLiked ? 'heartFilled' : 'heart'} /> {likeCount}
       </button>
-      <button onClick={toggleBookmark} className={isBookmarked && 'selected'}>
+      <button
+        onClick={toggleBookmark}
+        className={isBookmarked ? 'selected' : ''}
+      >
         <Icon id={isBookmarked ? 'bookmarkFilled' : 'bookmark'} />{' '}
         {bookmarkCount}
       </button>

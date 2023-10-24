@@ -47,6 +47,18 @@
     @apply content-none mr-0
   }
 
+  .half-and-half {
+    @apply bg-hotMagenta bg-halfAndHalf bg-left-top bg-repeat
+  }
+
+  .page-title {
+    @apply font-black text-[104px] leading-none tracking-tight
+  }
+
+  .page-subtitle {
+    @apply text-4xl tracking-tight font-bold;
+  }
+
   .threaded {
     @apply relative;
   }

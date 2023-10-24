@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import LegalLayout from './LegalLayout'
+import GitHubCorner from './GitHubCorner'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//   https://redwoodjs.com/docs/testing#testing-pages-layouts
+//    https://redwoodjs.com/docs/testing#testing-components
 
-describe('LegalLayout', () => {
+describe('GitHubCorner', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<LegalLayout />)
+      render(<GitHubCorner />)
     }).not.toThrow()
   })
 })

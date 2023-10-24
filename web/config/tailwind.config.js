@@ -3,6 +3,9 @@ module.exports = {
   content: ['src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        halfAndHalf: "url('/images/bg.svg')",
+      },
       borderRadius: {
         5: '20px',
       },
@@ -14,6 +17,9 @@ module.exports = {
         whiteSmoke: '#f5f5f5',
         hotMagenta: '#ff00bf',
         veryLightGray: '#cfcfcf',
+      },
+      padding: {
+        18: '4.5rem',
       },
       zIndex: {
         avatar: 2,

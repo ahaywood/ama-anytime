@@ -12,24 +12,14 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Logo from './Logo'
+import GitHubCorner from './GitHubCorner'
 
-const meta: Meta<typeof Logo> = {
-  component: Logo,
+const meta: Meta<typeof GitHubCorner> = {
+  component: GitHubCorner,
 }
 
 export default meta
 
-type Story = StoryObj<typeof Logo>
+type Story = StoryObj<typeof GitHubCorner>
 
 export const Primary: Story = {}
-export const onDark: Story = {
-  args: {
-    style: 'onDark',
-  },
-}
-export const onPink: Story = {
-  args: {
-    style: 'onPink',
-  },
-}

@@ -1,5 +1,7 @@
+import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import FollowingListCell from 'src/components/FollowingListCell'
 import PageHeading from 'src/components/PageHeading/PageHeading'
 
 interface Props {
@@ -12,7 +14,9 @@ const FollowingPage = ({ id }: Props) => {
     <>
       <MetaTags title="Following" description="Following page" />
 
-      <PageHeading heading="Following Amy" />
+      <PageHeading heading="Amy's Following" backButtonLink={routes.feed()} />
+
+      <FollowingListCell id={id} />
     </>
   )
 }

@@ -15,6 +15,7 @@ export const QUERY = gql`
       createdAt
       updatedAt
       answer
+      answeredAt
       countBookmarks
       countLikes
       countFollowups
