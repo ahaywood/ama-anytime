@@ -47,6 +47,41 @@
     @apply content-none mr-0
   }
 
+  /* form fields */
+  .big-form .field {
+    @apply mb-8
+  }
+
+  .big-form label {
+    @apply mb-2 font-bold text-xl block
+  }
+
+  .big-form input[type='text'],
+  .big-form input[type='email'],
+  .big-form input[type='password'] {
+    @apply text-xl font-bold h-[72px] w-full px-8 border-4 border-whiteSmoke
+  }
+
+  .big-form .button {
+    @apply text-xl font-bold tracking-tight
+  }
+
+  .big-form .button.no-bg {
+    @apply text-black hover:text-hotMagenta bg-transparent underline
+  }
+
+  .big-form .button.solid {
+    @apply bg-hotMagenta text-whiteSmoke px-12 py-4 center rounded-full hover:bg-black hover:text-white
+  }
+
+  .big-form .button.with-icon {
+    @apply flex items-center gap-2
+  }
+
+  .big-form .button.destructive {
+    @apply text-error
+  }
+
   .half-and-half {
     @apply bg-hotMagenta bg-halfAndHalf bg-left-top bg-repeat
   }

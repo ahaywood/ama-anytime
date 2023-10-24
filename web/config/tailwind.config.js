@@ -17,6 +17,7 @@ module.exports = {
         whiteSmoke: '#f5f5f5',
         hotMagenta: '#ff00bf',
         veryLightGray: '#cfcfcf',
+        error: '#EF4344',
       },
       padding: {
         18: '4.5rem',

@@ -1,19 +1,23 @@
-import { Link, routes } from '@redwoodjs/router'
+import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import { useAuth } from 'src/auth'
+import MyAccountCell from 'src/components/MyAccount/MyAccountCell'
+import PageHeading from 'src/components/PageHeading/PageHeading'
+
 const MyAccountPage = () => {
+  const { currentUser } = useAuth()
+  console.log({ currentUser })
+
   return (
     <>
       <MetaTags title="MyAccount" description="MyAccount page" />
 
-      <h1>MyAccountPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/MyAccountPage/MyAccountPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>myAccount</code>, link to me with `
-        <Link to={routes.myAccount()}>MyAccount</Link>`
-      </p>
+      <PageHeading heading="My Account" backButtonLink={routes.feed()} />
+
+      <div className="px-16 pt-11">
+        {currentUser && <MyAccountCell id={currentUser.id} />}
+      </div>
     </>
   )
 }
