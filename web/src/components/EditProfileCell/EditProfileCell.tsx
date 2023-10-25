@@ -10,6 +10,7 @@ import {
   UrlField,
   useForm,
 } from '@redwoodjs/forms'
+import { navigate, routes } from '@redwoodjs/router'
 import {
   type CellSuccessProps,
   type CellFailureProps,
@@ -73,7 +74,12 @@ export const Success = ({
   }
 
   const handleSubmit = (data) => {
-    updateProfile({ variables: { id: user.id, input: data } })
+    updateProfile({
+      variables: { id: user.id, input: data },
+      onCompleted: () => {
+        navigate(routes.myProfile())
+      },
+    })
   }
 
   return (
