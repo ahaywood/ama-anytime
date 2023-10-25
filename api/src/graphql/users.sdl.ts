@@ -27,6 +27,8 @@ export const schema = gql`
     Votes: [Vote]!
     Following: [Following]!
     Followers: [Following]!
+    Invites: [Invite]!
+    ConfirmedInvite: [Invite]!
   }
 
   type Query {

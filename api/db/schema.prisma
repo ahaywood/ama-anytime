@@ -38,6 +38,25 @@ model User {
   HashtagSearch       HashtagSearch[] @relation("searchedBy")
   PersonSearch        PersonSearch[]  @relation("searchedBy")
   LookingFor          PersonSearch[]  @relation("lookingFor")
+  Invites             Invite[]        @relation("invitedBy")
+  ConfirmedInvite     Invite[]        @relation("confirmedUser")
+}
+
+model Invite {
+  id              Int          @id @default(autoincrement())
+  email           String       @unique
+  inviteStatus    InviteStatus @relation("inviteStatus", fields: [inviteStatusId], references: [id])
+  inviteStatusId  Int
+  invitedBy       User         @relation("invitedBy", fields: [invitedById], references: [id])
+  invitedById     Int
+  confirmedUser   User?        @relation("confirmedUser", fields: [confirmedUserId], references: [id])
+  confirmedUserId Int?
+}
+
+model InviteStatus {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  Invites Invite[] @relation("inviteStatus")
 }
 
 model HashtagSearch {

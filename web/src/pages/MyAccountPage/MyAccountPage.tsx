@@ -15,7 +15,7 @@ const MyAccountPage = () => {
 
       <PageHeading heading="My Account" backButtonLink={routes.feed()} />
 
-      <div className="px-16 pt-11">
+      <div className="page-content">
         {currentUser && <MyAccountCell id={currentUser.id} />}
       </div>
     </>

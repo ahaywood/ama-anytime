@@ -5,9 +5,14 @@ import Icon from '../Icon/Icon'
 interface PageHeadingProps {
   backButtonLink?: string
   heading: string
+  subheading?: string
 }
 
-const PageHeading = ({ heading, backButtonLink = '' }: PageHeadingProps) => {
+const PageHeading = ({
+  heading,
+  subheading = '',
+  backButtonLink = '',
+}: PageHeadingProps) => {
   return (
     <div className="relative border-b-2 border-b-black bg-black pb-4 pl-16 pt-14 text-white">
       {backButtonLink && (
@@ -18,7 +23,8 @@ const PageHeading = ({ heading, backButtonLink = '' }: PageHeadingProps) => {
           <Icon id="arrow" />
         </Link>
       )}
-      <h1 className="text-xl font-bold">{heading}</h1>
+      <h1 className="inline text-xl font-bold">{heading}</h1>
+      {subheading && <h2 className="inline pl-3 text-sm">{subheading}</h2>}
     </div>
   )
 }

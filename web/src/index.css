@@ -47,6 +47,11 @@
     @apply content-none mr-0
   }
 
+  /* page content */
+  .page-content {
+    @apply px-16 pt-11 mb-10;
+  }
+
   /* form fields */
   .big-form .field {
     @apply mb-8
@@ -61,7 +66,7 @@
   .big-form input[type='email'],
   .big-form input[type='url'],
   .big-form input[type='password'] {
-    @apply text-xl font-bold h-[72px] w-full px-8 border-4 border-whiteSmoke
+    @apply text-xl font-bold h-[72px] w-full px-8 border-4 border-whiteSmoke focus:outline-hotMagenta
   }
 
   .big-form textarea {
@@ -76,8 +81,21 @@
     @apply text-black hover:text-hotMagenta bg-transparent underline
   }
 
+  .big-form .button.solid,
+  .big-form .button.secondary {
+    @apply px-12 py-4 center rounded-full
+  }
+
   .big-form .button.solid {
-    @apply bg-hotMagenta text-whiteSmoke px-12 py-4 center rounded-full hover:bg-black hover:text-white
+    @apply bg-hotMagenta text-whiteSmoke hover:bg-black hover:text-white
+  }
+
+  .big-form .button.secondary {
+    @apply bg-whiteSmoke text-black
+  }
+
+  .big-form .button.small {
+    @apply py-2 px-4 text-sm
   }
 
   .big-form .button.with-icon {
@@ -154,6 +172,26 @@
   .options-menu.bottomRight:before,
   .options-menu.bottomLeft:before {
     @apply border-t-whiteSmoke border-b-transparent -bottom-[32px]
+  }
+
+  /* invitations */
+  ul.invitation-list {
+    counter-reset: invitation;
+    @apply list-none
+  }
+
+  .invitation-list li {
+    @apply flex items-center flex-1 w-full mb-4 gap-4;
+  }
+
+  .invitation-list li div {
+    @apply flex-1;
+  }
+
+  .invitation-list li:before {
+    content: counter(invitation);
+    counter-increment: invitation;
+    @apply text-4xl font-bold tracking-tight w-[60px];
   }
 }
 

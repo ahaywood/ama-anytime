@@ -2,7 +2,7 @@ export interface AvatarProps {
   className?: string
   image?: string
   name?: string
-  size?: 'large' | 'medium' | '42' | 'small'
+  size?: 'large' | '72' | 'medium' | '42' | 'small'
 }
 
 const Avatar = ({
@@ -17,6 +17,10 @@ const Avatar = ({
     large: {
       size: '160px',
       text: '48px',
+    },
+    72: {
+      size: '72px',
+      text: '24px',
     },
     medium: {
       size: '64px',

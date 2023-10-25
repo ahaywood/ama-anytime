@@ -18,6 +18,7 @@ module.exports = {
         hotMagenta: '#ff00bf',
         veryLightGray: '#cfcfcf',
         error: '#EF4344',
+        success: '#15a34a',
       },
       padding: {
         18: '4.5rem',

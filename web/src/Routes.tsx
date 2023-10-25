@@ -15,9 +15,12 @@ import HalfAndHalfLayout from './layouts/HalfAndHalfLayout/HalfAndHalfLayout'
 import HalfAndHalfWithTitleLayout from './layouts/HalfAndHalfWithTitleLayout/HalfAndHalfWithTitleLayout'
 import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 
+// TODO: Set up Privacy for pages that require authentication
+
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/invite-only" page={InviteOnlyPage} name="inviteOnly" />
       <Set wrap={HalfAndHalfLayout}>
         {/* legal pages */}
         <Route path="/terms-conditions" page={TermsConditionsPage} name="termsConditions" prerender />

@@ -9,6 +9,7 @@ export type IconName =
 	| "bookmark"
 	| "bookmarkFilled"
 	| "camera"
+	| "cancel"
 	| "check"
 	| "close"
 	| "closeSmall"

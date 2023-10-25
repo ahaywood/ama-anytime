@@ -54,6 +54,12 @@ export const User: UserRelationResolvers = {
   Bookmarks: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).Bookmarks()
   },
+  Invites: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).Invites()
+  },
+  ConfirmedInvites: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).Invites()
+  },
   Votes: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).Votes()
   },
