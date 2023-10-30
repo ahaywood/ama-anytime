@@ -48,84 +48,66 @@ const LoginPage = () => {
     <>
       <MetaTags title="Login" />
 
-      <main className="rw-main">
+      <main className="pt-36">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Login</h2>
-            </header>
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <Label
-                    name="username"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Username
-                  </Label>
-                  <TextField
-                    name="username"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Username is required',
-                      },
-                    }}
-                  />
+        <Form onSubmit={onSubmit} className="big-form">
+          <div className="field">
+            <Label
+              name="username"
+              errorClassName="error-message"
+              className="large"
+            >
+              Username
+            </Label>
+            <TextField
+              name="username"
+              errorClassName="error-message"
+              ref={usernameRef}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Username is required',
+                },
+              }}
+            />
 
-                  <FieldError name="username" className="rw-field-error" />
+            <FieldError name="username" className="rw-field-error" />
+          </div>
 
-                  <Label
-                    name="password"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Password
-                  </Label>
-                  <PasswordField
-                    name="password"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    autoComplete="current-password"
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Password is required',
-                      },
-                    }}
-                  />
-
-                  <div className="rw-forgot-link">
-                    <Link
-                      to={routes.forgotPassword()}
-                      className="rw-forgot-link"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </div>
-
-                  <FieldError name="password" className="rw-field-error" />
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
-                  </div>
-                </Form>
-              </div>
+          <div className="field">
+            <div className="flex items-center justify-between">
+              <Label
+                name="password"
+                errorClassName="error-message"
+                className="large"
+              >
+                Password
+              </Label>
+              <Link
+                to={routes.forgotPassword()}
+                className="underline hover:no-underline"
+              >
+                Forgot?
+              </Link>
             </div>
+            <PasswordField
+              name="password"
+              errorClassName="error-message"
+              autoComplete="current-password"
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Password is required',
+                },
+              }}
+            />
           </div>
-          <div className="rw-login-link">
-            <span>Don&apos;t have an account?</span>{' '}
-            <Link to={routes.signup()} className="rw-link">
-              Sign up!
-            </Link>
-          </div>
-        </div>
+
+          <FieldError name="password" className="rw-field-error" />
+
+          <Submit className="button huge ">Login</Submit>
+        </Form>
       </main>
     </>
   )

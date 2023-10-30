@@ -61,6 +61,10 @@
     @apply mb-2 font-bold text-xl block
   }
 
+  .big-form label.large {
+    @apply text-4xl
+  }
+
   .big-form textarea,
   .big-form input[type='text'],
   .big-form input[type='email'],
@@ -104,6 +108,10 @@
 
   .big-form .button.destructive {
     @apply text-error
+  }
+
+  .big-form .button.huge {
+    @apply bg-black text-white hover:bg-hotMagenta text-4xl py-6 center w-full rounded-full
   }
 
   .half-and-half {

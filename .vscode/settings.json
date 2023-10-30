@@ -5,6 +5,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#3d0042",
+    "titleBar.activeBackground": "#ff00bf",
+    "titleBar.activeForeground": "#FDFCFE"
+  },
   "[prisma]": {
     "editor.formatOnSave": true
   },

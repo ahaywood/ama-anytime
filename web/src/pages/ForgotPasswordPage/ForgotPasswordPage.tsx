@@ -41,51 +41,36 @@ const ForgotPasswordPage = () => {
     <>
       <MetaTags title="Forgot Password" />
 
-      <main className="rw-main">
+      <main className="pt-36">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">
-                Forgot Password
-              </h2>
-            </header>
+        <Form onSubmit={onSubmit} className="big-form">
+          <div className="field">
+            <Label
+              name="username"
+              className="large"
+              errorClassName="error-message"
+            >
+              Username
+            </Label>
+            <TextField
+              name="username"
+              errorClassName="error-message"
+              ref={usernameRef}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Username is required',
+                },
+              }}
+            />
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <div className="text-left">
-                    <Label
-                      name="username"
-                      className="rw-label"
-                      errorClassName="rw-label rw-label-error"
-                    >
-                      Username
-                    </Label>
-                    <TextField
-                      name="username"
-                      className="rw-input"
-                      errorClassName="rw-input rw-input-error"
-                      ref={usernameRef}
-                      validation={{
-                        required: {
-                          value: true,
-                          message: 'Username is required',
-                        },
-                      }}
-                    />
-
-                    <FieldError name="username" className="rw-field-error" />
-                  </div>
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Submit</Submit>
-                  </div>
-                </Form>
-              </div>
-            </div>
+            <FieldError name="username" className="error-message" />
           </div>
-        </div>
+
+          <div>
+            <Submit className="button huge">Submit</Submit>
+          </div>
+        </Form>
       </main>
     </>
   )

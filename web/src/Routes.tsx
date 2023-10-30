@@ -12,7 +12,6 @@ import { Router, Route, Set } from '@redwoodjs/router'
 import { useAuth } from './auth'
 import AccountLayout from './layouts/AccountLayout/AccountLayout'
 import HalfAndHalfLayout from './layouts/HalfAndHalfLayout/HalfAndHalfLayout'
-import HalfAndHalfWithTitleLayout from './layouts/HalfAndHalfWithTitleLayout/HalfAndHalfWithTitleLayout'
 import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 
 // TODO: Set up Privacy for pages that require authentication
@@ -33,14 +32,23 @@ const Routes = () => {
       </Set>
 
       {/* auth */}
-      <Set wrap={HalfAndHalfWithTitleLayout}>
+      <Set wrap={HalfAndHalfLayout} title="Login">
         <Route path="/login" page={LoginPage} name="login" />
+      </Set>
+      <Set wrap={HalfAndHalfLayout} title="Sign Up">
         <Route path="/signup" page={SignupPage} name="signup" />
+      </Set>
+      <Set wrap={HalfAndHalfLayout} title="Forgot?">
         <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      </Set>
+      <Set wrap={HalfAndHalfLayout} title="Reset">
         <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+      </Set>
 
-        {/* title on the side (same as login) */}
+      <Set wrap={HalfAndHalfLayout} title="Join the Waiting List">
         <Route path="/waiting-list" page={WaitingListPage} name="waitingList" />
+      </Set>
+      <Set wrap={HalfAndHalfLayout} title="Contact">
         <Route path="/contact" page={ContactPage} name="contact" />
       </Set>
 
